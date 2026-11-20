@@ -7,6 +7,7 @@ const getProductInfo= async (id)=> {
 }
 
 const displayProductInfo= async (id)=> {
+    const loader= document.querySelector('.details-loader');
     try{
         const Product= await getProductInfo(id);
 
@@ -99,7 +100,13 @@ const displayProductInfo= async (id)=> {
         })
 
     }catch(error){
-
+        document.querySelector('.product-info').innerHTML= `
+                <div calss="error">
+                    Faild to load Data
+                </div>
+        `
+    }finally{
+        loader.classList.add('d-none')
     }
 }
 displayProductInfo(id);
